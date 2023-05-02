@@ -10,19 +10,20 @@
 #c. Utilizar un vector para representar la mochila.
 
 
-def usar_la_fuerza(mochila, objetos_sacados=0):
-    if  mochila == []:  # Si la mochila está vacía, no se encontró el sable de luz.
+def UsarLaFuerza(mochila, objetos_sacados=0):
+    if  mochila == []:  # Si la mochila está vacía, devuelve que no se encontró el sable de luz.
         print("No se encontró un sable de luz en la mochila.")
         return
     else:
+        #Si no, va sacando uno por uno los objetos de la mochila, a su vez sumando un contador por cada elemento sacado
         objeto = mochila.pop(0)
         objetos_sacados += 1
         if objeto == "sable de luz":
             print(("Se encontró un sable de luz después de sacar"),(objetos_sacados),("objetos."))
             return
         else:  # Si el objeto no es un sable de luz, se sigue buscando
-            usar_la_fuerza(mochila, objetos_sacados)
+            UsarLaFuerza(mochila, objetos_sacados)
 
 
-mochila = ["libro", "botella de agua", "linterna", "sable de luz", "comida"]
-usar_la_fuerza(mochila)
+mochila = ["Máscara de Mandalore", "Brújula estelar Jedi", "Anillos de Vaale", "sable de luz", "Codex"]
+UsarLaFuerza(mochila)
