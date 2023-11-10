@@ -1,26 +1,4 @@
-class Cola:
-    def __init__(self):
-        self.__elementos = []
-
-    def arrive(self, value):
-        self.__elementos.append(value)
-
-    def atention(self):
-        if self.size() > 0:
-            return self.__elementos.pop(0)
-
-    def size(self):
-        return len(self.__elementos)
-
-    def on_front(self):
-        if self.size() > 0:
-            return self.__elementos[0]
-
-    def move_to_end(self):
-        if self.size() > 0:
-            first_element = self.atention()
-            self.arrive(first_element)
-            return first_element
+from cola import Cola
 
 
 cola_personajes = Cola()
@@ -51,7 +29,7 @@ def mostrar_superheroes_femeninos(cola):
     while personaje_actual is not None:
         if personaje_actual["genero"] == "F":
             print(personaje_actual["superheroe"])
-        cola_temporal.arrive(cola.atention())
+        cola_temporal.arrive(cola.atention()) #se quita de la cola original y se ingresa a la cola temporal
         personaje_actual = cola.on_front()
 
     while cola_temporal.size() > 0:

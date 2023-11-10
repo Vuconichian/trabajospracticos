@@ -1,28 +1,7 @@
 from datetime import datetime
 from pila_para_ej import Pila
+from cola import Cola
 
-class Cola:
-    def __init__(self):
-        self.__elementos = []
-
-    def arrive(self, value):
-        self.__elementos.append(value)
-
-    def attention(self):
-        if self.size() > 0:
-            return self.__elementos.pop(0)
-
-    def size(self):
-        return len(self.__elementos)
-
-    def on_front(self):
-        if self.size() > 0:
-            return self.__elementos[0]
-
-    def move_to_end(self):
-        if self.size() > 0:
-            first_element = self.attention()
-            self.arrive(first_element)
 
 
 class Notification:
@@ -35,8 +14,8 @@ class Notification:
 def eliminar_notificaciones_facebook(cola):
     elementos_eliminar = []
     while cola.size() > 0:
-        notificacion = cola.attention()
-        if notificacion.app != "Facebook":
+        notificacion = cola.atention()
+        if notificacion.app != "Facebook":  
             elementos_eliminar.append(notificacion)
 
     for elemento in elementos_eliminar:
@@ -47,7 +26,7 @@ def twitter_python(cola):
     notif_verificadas = 0
 
     while notif_verificadas < cola.size():
-        notificacion = cola.attention()
+        notificacion = cola.atention()
         if notificacion.app == "Twitter" and "Python" in notificacion.message:
             print(f"Hora: {notificacion.time}")
             print(f"Aplicación: {notificacion.app}")
@@ -63,7 +42,7 @@ def almacenar_notif(cola):
     contador = 0
 
     while cola.size() > 0:
-        notificacion = cola.attention()
+        notificacion = cola.atention()
         hora = datetime.strptime(notificacion.time, "%H:%M").time()
 
         hora_inicio = datetime.strptime("11:43", "%H:%M").time()
@@ -95,7 +74,7 @@ eliminar_notificaciones_facebook(cola_notificaciones)
 def mostrar_notificaciones(cola_notificaciones):
     lista_aux = []
     while cola_notificaciones.size() > 0:
-        notificacion = cola_notificaciones.attention()
+        notificacion = cola_notificaciones.atention()
         print(f'Hora: {notificacion.time}, Aplicación: {notificacion.app}, Mensaje: {notificacion.message}')
         lista_aux.append(notificacion)
     

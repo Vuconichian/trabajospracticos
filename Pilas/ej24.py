@@ -26,28 +26,32 @@ pila_MarvelUniverse .push({"nombre": "Capitán América", "peliculas": 6})
 pila_MarvelUniverse .push({"nombre": "Groot", "peliculas": 4})
 pila_MarvelUniverse .push({"nombre": "Hulk", "peliculas": 7})
 
-
+#determina los personajes que participaron en más de 5 películas de la saga
 personajes_con_mas_de_cinco_peliculas = []
-for personaje in pila_MarvelUniverse ._Pila__elements:
+for personaje in pila_MarvelUniverse._Pila__elements:
     if personaje["peliculas"] > 5:
         personajes_con_mas_de_cinco_peliculas.append(personaje)
         print(personaje["nombre"], "- Películas:", personaje["peliculas"])
 
 
-posicion_rocket_raccon = pila_MarvelUniverse.size() - pila_MarvelUniverse ._Pila__elements.index({"nombre": "Rocket Raccoon", "peliculas": 5}) + 1
-posicion_groot = pila_MarvelUniverse .size() - pila_MarvelUniverse ._Pila__elements.index({"nombre": "Groot", "peliculas": 4}) + 1
+# determina en qué posición se encuentran Rocket Raccoon y Groot, tomando como posición uno la cima de la pila;
+posicion_rocket_raccon = pila_MarvelUniverse.size() - pila_MarvelUniverse._Pila__elements.index({"nombre": "Rocket Raccoon", "peliculas": 5}) + 1
+posicion_groot = pila_MarvelUniverse .size() - pila_MarvelUniverse._Pila__elements.index({"nombre": "Groot", "peliculas": 4}) + 1
 print("Posición de Rocket Raccoon:", posicion_rocket_raccon)
 print("Posición de Groot:", posicion_groot)
 
+
+# determina en cuantas películas participo la Viuda Negra (Black Widow);
 contador_peliculas_Black_Widow = 0
 for personaje in pila_MarvelUniverse._Pila__elements:
     if personaje["nombre"] == "Black Widow":
         contador_peliculas_Black_Widow += personaje["peliculas"]
 print("Número de películas de Viuda Negra:", contador_peliculas_Black_Widow)
 
+# muestra todos los personajes cuyos nombre empiezan con C, D y G.
 iniciales = ["C", "D", "G"]
 personajes_iniciales = []
-for personaje in pila_MarvelUniverse ._Pila__elements:
+for personaje in pila_MarvelUniverse._Pila__elements:
     if personaje["nombre"][0] in iniciales:
         personajes_iniciales.append(personaje)
 for personaje in personajes_iniciales:

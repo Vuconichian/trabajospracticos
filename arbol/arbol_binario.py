@@ -89,7 +89,6 @@ class BinaryTree:
                 __buscar_jedi(root.left, name)
                 __buscar_jedi(root.right, name)
 
-
     def insert_node(self, value, other_values=None):
 
         def __insertar(root, value, other_values):
@@ -162,13 +161,31 @@ class BinaryTree:
 
         __inorden_h_v(self.root, is_hero, other_values)
 
-    def inorden_start_with(self, cadena):
-        def __inorden_start_with(root, cadena):
+    def inorden_start_with_(self, cadena):
+        def __inorden_start_with__(root, cadena):
             if root is not None:
-                __inorden_start_with(root.left, cadena)
-                if root.other_values is True and root.value.upper().startswith(cadena):
-                    print(root.value)
-                __inorden_start_with(root.right, cadena)
+                __inorden_start_with__(root.left, cadena)
+                if root.value is not None and root.value.lower().startswith(cadena.lower()):
+                    print("Nombre:", root.value)
+                    if root.other_values:
+                        print("tipo:", root.other_values.get("tipo", "-"))
+                        print("numero:", root.other_values.get("numero", "-"))
+                    print()
+                __inorden_start_with__(root.right, cadena)
+
+        __inorden_start_with__(self.root, cadena.lower())
+
+
+
+    def inorden_start_with_tipo(self, cadena):
+        def __inorden_start_with_tipo(root, cadena):
+            if root is not None:
+                __inorden_start_with_tipo(root.left, cadena)
+                if root.other_values and "tipo" in root.other_values and cadena.lower() in root.other_values["tipo"]:
+                    print("Nombre:", root.value)
+                __inorden_start_with_tipo(root.right, cadena)
+
+        __inorden_start_with_tipo(self.root, cadena.lower())
 
     def postorden(self):
         def __postorden(root):
@@ -191,12 +208,49 @@ class BinaryTree:
     def search_by_coincidence(self, value):
         def __search_by_coincidence(root, value):
             if root is not None:
-                if root.value.lower().startswith(value.lower()):
-                    print(root.value)
+                if str(root.value) == str(value):  # Convertir ambos valores a cadena para comparar
+                    if root.other_values is not None:
+                        name = root.other_values.get("name", "-")
+                        number = root.value
+                        types = ", ".join(root.other_values.get("type", []))
+                        print("Nombre:", name)
+                        print("Número:", number)
+                        print("Tipo:", types)
                 __search_by_coincidence(root.left, value)
                 __search_by_coincidence(root.right, value)
 
-        __search_by_coincidence(self.root, value.lower())
+        __search_by_coincidence(self.root, value)
+
+    def inorden_start_with_jedi(self, cadena):
+        def __inorden_start_with_jedi(root, cadena):
+            if root is not None:
+                __inorden_start_with_jedi(root.left, cadena)
+                if root.value is not None and root.value.lower().startswith(cadena.lower()):
+                    print("Nombre:", root.value)
+                    if root.other_values:
+                        print("Numero:", root.other_values.get("numero", "-"))
+                        print("Tipo:", root.other_values.get("tipo", "-"))
+                    print()
+                __inorden_start_with_jedi(root.right, cadena)
+
+        __inorden_start_with_jedi(self.root, cadena.lower())
+
+
+    def inorden_pokemon_tipo(self, tipo_buscar):
+        def __inorden_pokemon_tipo(root, tipo_buscar):
+            if root is not None:
+                __inorden_pokemon_tipo(root.left, tipo_buscar)
+                if root.other_values and "tipo" in root.other_values:
+                    tipo = root.other_values["tipo"]
+                    if tipo == tipo_buscar:
+                        print("name: ", root.value)
+                        print("tipo:", root.other_values.get("tipo", "-"))
+                        print("numero:", root.other_values.get("numero", "-"))
+                        print()
+                __inorden_pokemon_tipo(root.right, tipo_buscar)
+
+        __inorden_pokemon_tipo(self.root, tipo_buscar)
+
 
     def search(self, key):
         def __search(root, key):
@@ -280,6 +334,21 @@ class BinaryTree:
             return count
 
         return __contar_villanos(self.root)
+
+
+
+    def mostrar_por_specie(self, species):
+            def __mostrar_por_specie(root):
+                if root is not None:
+                    __mostrar_por_specie(root.left)
+                    if root.other_values and "specie" in root.other_values and root.other_values["specie"] in species:
+                        print("Nombre:", root.value.get("nombre", "-"))
+                        print("tipo:", root.other_values["tipo"])
+                        print()
+                    __mostrar_por_specie(root.right)
+
+            __mostrar_por_specie(self.root)
+
 
 #Lista los nodos de los arboles de manera descendente
     def inorden_descendente(self, root):
@@ -373,6 +442,19 @@ class BinaryTree:
                     __mostrar_jedi_specie(root.right)
 
             __mostrar_jedi_specie(self.root)
+
+
+    def mostrar_pokemon_tipo(self, tipos):
+            def __mostrar_pokemon_tipo(root):
+                if root is not None:
+                    __mostrar_pokemon_tipo(root.left)
+                    if root.other_values and "tipo" in root.other_values and root.other_values["tipo"] in tipos:
+                        print("Nombre:", root.other_values.get("nombre", "-"))
+                        print("Tipo:", root.other_values["tipo"])
+                        print()
+                    __mostrar_pokemon_tipo(root.right)
+
+            __mostrar_pokemon_tipo(self.root)
 
     def listar_jedi_con_guion(self):
         def __listar_jedi_con_guion(root):
@@ -482,3 +564,24 @@ class BinaryTree:
 
             __not_defeated(self.root)
 
+    def inorden_ranking(self, ranking):
+            def __inorden_ranking(root, ranking):
+                if root is not None:
+                    __inorden_ranking(root.left, ranking)
+                    if root.other_values['derrotado'] is not None:
+                        if root.other_values['derrotado'] not in ranking:
+                            ranking[root.other_values['derrotado']] = 1
+                        else:
+                            ranking[root.other_values['derrotado']] += 1
+                    __inorden_ranking(root.right, ranking)
+
+            __inorden_ranking(self.root, ranking)
+
+    def inorden_add_field(self):
+        def __inorden_add_field(root):
+            if root is not None:
+                __inorden_add_field(root.left)
+                root.other_values['capturado'] = None
+                __inorden_add_field(root.right)
+
+        __inorden_add_field(self.root)

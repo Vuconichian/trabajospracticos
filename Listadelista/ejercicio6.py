@@ -1,15 +1,4 @@
-#Dada una lista de superhéroes de comics, de los cuales se conoce su nombre, año aparición,
-#casa de comic a la que pertenece (Marvel o DC) y biografía, implementar la funciones necesarias 
-#para poder realizar las siguientes actividades:
-# a. eliminar el nodo que contiene la información de Linterna Verde;
-# b. mostrar el año de aparición de Wolverine;
-# c. cambiar la casa de Dr. Strange a Marvel;
-# d. mostrar el nombre de aquellos superhéroes que en su biografía menciona la palabra “traje” o “armadura”;
-# e. mostrar el nombre y la casa de los superhéroes cuya fecha de aparición sea anterior a 1963;
-# f. mostrar la casa a la que pertenece Capitana Marvel y Mujer Maravilla;
-# g. mostrar toda la información de Flash y Star-Lord;
-# h. listar los superhéroes que comienzan con la letra B, M y S;
-# i. determinar cuántos superhéroes hay de cada casa de comic.
+
 class Superheroe:
     def __init__(self, nombre, año_aparicion, casa, biografia):
         self.nombre = nombre
@@ -41,7 +30,7 @@ superheroes = [
     Superheroe("Star-Lord", 1976, "Marvel", "Biografía de Star-Lord"),
 ]
 
-# A
+# a. Eliminar el nodo que contiene la información de Linterna Verde
 def eliminar_superheroe(superheroes, nombre):
     for superheroe in superheroes:
         if superheroe.nombre == nombre:
@@ -51,7 +40,7 @@ def eliminar_superheroe(superheroes, nombre):
 eliminar_superheroe(superheroes, "Linterna Verde")
 print("A. Superheroe 'Linterna Verde' eliminado")
 
-# B
+# b. Mostrar el año de aparición de Wolverine
 def mostrar_año_wolverine(superheroes, nombre):
     for superheroe in superheroes:
         if superheroe.nombre == nombre:
@@ -61,7 +50,7 @@ def mostrar_año_wolverine(superheroes, nombre):
 print("____________________")
 print("B. Año de aparicion de Wolverine: ",(mostrar_año_wolverine(superheroes, "Wolverine")))
 
-# C
+# c. Cambiar la casa de Dr. Strange a Marvel
 def cambiar_casa_dr_strange(superheroes, nombre):
     for superheroe in superheroes:
         if superheroe.nombre == nombre:
@@ -71,7 +60,7 @@ cambiar_casa_dr_strange(superheroes, "Dr. Strange")
 print("____________________")
 print("C. El superheroe 'Dr. Strange' ha sido cambiado de casa, desde casa DC a casa Marvel")
 
-# D
+# d. Mostrar el nombre de superhéroes que mencionan "traje" o "armadura" en su biografía
 def superheroes_con_palabra(superheroes, palabra):
     nombres = []
     for superheroe in superheroes:
@@ -83,7 +72,7 @@ print("____________________")
 print("D. Superheroes con traje: ", (superheroes_con_palabra(superheroes, "traje")))
 print("   Superheroes con armadura: ", (superheroes_con_palabra(superheroes, "armadura")))
 
-# E
+# e. Mostrar el nombre y la casa de los superhéroes cuya fecha de aparición sea anterior a 1963
 def superheroes_anteriores_1963(superheroes, año_limite):
     info_superheroes = []
     for superheroe in superheroes:
@@ -94,7 +83,7 @@ def superheroes_anteriores_1963(superheroes, año_limite):
 print("____________________")
 print("E. Los siguientes superheroes tuvieron su primera aparición antes de 1963: ",(superheroes_anteriores_1963(superheroes, 1963)))
 
-# F
+# f. Mostrar la casa a la que pertenecen Capitana Marvel y Mujer Maravilla
 def casa_de_superheroes(superheroes, nombres):
     casas = {}
     for superheroe in superheroes:
@@ -105,7 +94,7 @@ def casa_de_superheroes(superheroes, nombres):
 print("____________________")
 print("F. Las superheroinas Capitana Marvel y Mujer maravilla pertenecen a las siguientes casas respectivamente: ", (casa_de_superheroes(superheroes, ["Capitana Marvel", "Mujer Maravilla"])))
 
-# G
+# g. Mostrar toda la información de Flash y Star-Lord
 def informacion_superheroes(superheroes, nombres):
     info = []
     for superheroe in superheroes:
@@ -116,7 +105,7 @@ def informacion_superheroes(superheroes, nombres):
 print("____________________")
 print("G. Información sobre los superheroes 'The Flash' y 'Star-Lord': ", (informacion_superheroes(superheroes, ["The Flash", "Star-Lord"])))
 
-# H
+# h. Listar los superhéroes que comienzan con la letra B, M y S
 def superheroes_por_letra(superheroes, letras):
     nombres = []
     for superheroe in superheroes:
@@ -126,7 +115,7 @@ def superheroes_por_letra(superheroes, letras):
 print("____________________")
 print("H. Los siguientes superhéroes comienzan con la letra B, M y S: ", (superheroes_por_letra(superheroes, ["B", "M", "S"])))
 
-# I
+# i. Determinar cuántos superhéroes hay de cada casa de comic
 def contar_superheroes_por_casa(superheroes):
     conteo = {}
     for superheroe in superheroes:

@@ -6,7 +6,7 @@
 
 from pila import Pila
 
-class Pelicula:                #crear la clase pelicula con sus respectivos atributos
+class Pelicula:                #crea la clase pelicula con sus respectivos atributos
     def __init__(self, titulo, estudio, anio):
         self.titulo = titulo
         self.estudio = estudio
@@ -36,7 +36,7 @@ def contar_peliculas_2018(pila_peliculas):
         pila_peliculas.push(pila_temporal.pop())
     return contador
 
-#funcion que filtra todas las peliculas de la pila por año, si es = 2018, se suma el contador
+#funcion que filtra todas las peliculas de Marvel Studios de la pila en el año 2016, suma el contador
 def mostrar_peliculas_marvel_2016(pila_peliculas):
     pila_temporal = Pila()
     while pila_peliculas.size() > 0:

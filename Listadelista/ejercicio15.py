@@ -76,7 +76,7 @@ for pokemon in pokemons:
 lista_entrenadores.barrido_entrenadores()
 print("_________")
 
-# A
+#A
 pos = lista_entrenadores.search('Juan', 'nombre')
 if pos is not None:
     valor = lista_entrenadores.get_element_by_index(pos)
@@ -84,11 +84,11 @@ if pos is not None:
     print(f'{entrenador.nombre} tiene {sublista.size()} pokemons')
 
 print("_________")
-# B
+#! B
 lista_entrenadores.barrido_cantidad_torneos_ganados(6)
 
 print("_________")
-# C
+#! C
 mayor_cantidad = lista_entrenadores.get_element_by_index(0)[0].ct_ganados
 pos_mayor = 0
 
@@ -113,8 +113,8 @@ print(f'El pokemon de mayor nivel del entrenador {entrenador.nombre} es {pokemon
 
 print("_________")
 
-# D
-nombre_entrenador = 'Juan' 
+# D. Mostrar todos los datos de un entrenador y sus Pokémon
+nombre_entrenador = 'Juan'  # Replace with the name of the trainer you want to display
 pos = lista_entrenadores.search(nombre_entrenador, 'nombre')
 if pos is not None:
     entrenador, sublista = lista_entrenadores.get_element_by_index(pos)
@@ -124,20 +124,20 @@ if pos is not None:
 
 print()
 
-# E
-mayor_al_porcentaje = 79  
+# E. Mostrar los entrenadores cuyo porcentaje de batallas ganadas sea mayor al 79%
+mayor_al_porcentaje = 79  # Replace with the desired percentage
 for entrenador, sublista in lista_entrenadores:
     if entrenador.cb_ganadas + entrenador.cb_perdidas == 0:
-        continue 
+        continue  # Skip trainers with no battles to avoid division by zero
     porcentaje_ganadas = (entrenador.cb_ganadas / (entrenador.cb_ganadas + entrenador.cb_perdidas)) * 100
     if porcentaje_ganadas > mayor_al_porcentaje:
         print(f'{entrenador.nombre} tiene un porcentaje de batallas ganadas del {porcentaje_ganadas:.2f}%')
 
 print()
 
-# F
-tipo = 'fuego' or 'agua'  
-subtipo = 'planta' or 'volador'
+# F. Los entrenadores que tengan Pokémons de tipo fuego y planta o agua/volador (tipo y subtipo)
+tipo = 'fuego'  # Replace with the desired type
+subtipo = 'planta'  # Replace with the desired sub-type
 for i in range(lista_entrenadores.size()):
     entrenador, sublista = lista_entrenadores.get_element_by_index(i)
     tiene_tipo_subtipo = False
@@ -151,8 +151,8 @@ for i in range(lista_entrenadores.size()):
 
 print()
 
-# G
-nombre_entrenador = 'Juan' 
+# G. El promedio de nivel de los Pokémon de un determinado entrenador
+nombre_entrenador = 'Juan'  # Replace with the name of the trainer you want to calculate
 pos = lista_entrenadores.search(nombre_entrenador, 'nombre')
 if pos is not None:
     entrenador, sublista = lista_entrenadores.get_element_by_index(pos)
@@ -165,8 +165,8 @@ if pos is not None:
         print(f'El promedio de nivel de los Pokémon de {entrenador.nombre} es {promedio:.2f}')
 
 print()
-# H 
-nombre_pokemon = 'pikachu' 
+# H. Determinar cuántos entrenadores tienen a un determinado Pokémon
+nombre_pokemon = 'pikachu'  # Replace with the desired Pokémon name
 count = 0
 for i in range(lista_entrenadores.size()):
     entrenador, sublista = lista_entrenadores.get_element_by_index(i)
@@ -174,13 +174,13 @@ for i in range(lista_entrenadores.size()):
         pokemon = sublista.get_element_by_index(j)
         if pokemon.nombre == nombre_pokemon:
             count += 1
-            break  
+            break  # No need to check other Pokémon in the same trainer
 
 print(f'{count} entrenadores tienen a {nombre_pokemon}')
 
 print()
 
-# I
+# I. Mostrar los entrenadores que tienen Pokémon repetidos
 for i in range(lista_entrenadores.size()):
     entrenador, sublista = lista_entrenadores.get_element_by_index(i)
     pokemon_set = set()
@@ -197,8 +197,8 @@ for i in range(lista_entrenadores.size()):
 
 print()
 
-# J
-pokemon_lista = ['Tyrantrum', 'Terrakion', 'Wingull']  
+# J. Determinar los entrenadores que tengan uno de los siguientes Pokémons: Tyrantrum, Terrakion o Wingull
+pokemon_lista = ['Tyrantrum', 'Terrakion', 'Wingull']  # Replace with the desired Pokémon names
 for i in range(lista_entrenadores.size()):
     entrenador, sublista = lista_entrenadores.get_element_by_index(i)
     for j in range(sublista.size()):
@@ -208,9 +208,9 @@ for i in range(lista_entrenadores.size()):
 
 print()
 
-# K
-nombre_entrenador = 'Juan'  
-nombre_pokemon = 'pikachu'  
+# K. Determinar si un entrenador "X" tiene al Pokémon "Y"
+nombre_entrenador = 'Juan'  # Replace with the desired trainer
+nombre_pokemon = 'pikachu'  # Replace with the desired Pokémon
 pos_entrenador = lista_entrenadores.search(nombre_entrenador, 'nombre')
 if pos_entrenador is not None:
     entrenador, sublista = lista_entrenadores.get_element_by_index(pos_entrenador)
