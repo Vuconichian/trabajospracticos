@@ -221,20 +221,6 @@ class BinaryTree:
 
         __search_by_coincidence(self.root, value)
 
-    def inorden_start_with_jedi(self, cadena):
-        def __inorden_start_with_jedi(root, cadena):
-            if root is not None:
-                __inorden_start_with_jedi(root.left, cadena)
-                if root.value is not None and root.value.lower().startswith(cadena.lower()):
-                    print("Nombre:", root.value)
-                    if root.other_values:
-                        print("Numero:", root.other_values.get("numero", "-"))
-                        print("Tipo:", root.other_values.get("tipo", "-"))
-                    print()
-                __inorden_start_with_jedi(root.right, cadena)
-
-        __inorden_start_with_jedi(self.root, cadena.lower())
-
 
     def inorden_pokemon_tipo(self, tipo_buscar):
         def __inorden_pokemon_tipo(root, tipo_buscar):
