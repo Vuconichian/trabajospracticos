@@ -4,7 +4,6 @@ casa = Grafo(dirigido=False)
 
 # Punto A
 print("Punto A")
-print("Vertices creados")
 casa.insert_vertice("cocina")
 casa.insert_vertice("cochera")
 casa.insert_vertice("quincho")
@@ -16,11 +15,11 @@ casa.insert_vertice("sala de estar")
 casa.insert_vertice("terraza")
 casa.insert_vertice("patio")
 casa.insert_vertice("comedor")
+print("Vertices creados")
 
 # Punto B
 print()
 print("Punto B")
-print("aristas insertadas")
 casa.insert_arist("cocina", "comedor", 2)
 casa.insert_arist("cocina", "baño 1", 1)
 casa.insert_arist("cocina", "habitación 1", 5)
@@ -58,7 +57,7 @@ casa.insert_arist("terraza", "patio", 7)
 casa.insert_arist("patio", "habitación 1", 5)
 casa.insert_arist("patio", "quincho", 1)
 casa.insert_arist("patio", "cocina", 11)
-
+print("aristas insertadas")
 
 # Punto C
 print()
