@@ -126,15 +126,11 @@ print()
 
 #Punto D
 print("Punto D")
-paises_con_maravillas = mi_grafo.paises_con_maravillas(maravillas_arquitectonicas, maravillas_naturales)
-print("Los siguientes paises tienen algun tipo de maravillas")
-print(paises_con_maravillas)
+Pais_a_buscar_con_maravillas = mi_grafo.contar_maravillas("brasil")
+print(Pais_a_buscar_con_maravillas)
 
 
 #Punto E
 print("Punto E")
-paises_con_mas_de_una_arquitectonica = mi_grafo.paises_con_mas_de_una_maravilla(maravillas_arquitectonicas, 'arquitectonica')
-print(paises_con_mas_de_una_arquitectonica)
-
-paises_con_mas_de_una_natural = mi_grafo.paises_con_mas_de_una_maravilla(maravillas_naturales, 'natural')
-print(paises_con_mas_de_una_natural)
+pais_con_mas_de_una_maravilla = mi_grafo.multiples_maravillas("brasil")
+print(pais_con_mas_de_una_maravilla)

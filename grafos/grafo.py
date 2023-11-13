@@ -76,19 +76,6 @@ class Grafo():
                 return f'{dato} no se encuentra en el grafo.'
 
 
-    def paises_con_maravillas(self, maravillas1, maravillas2):
-        paises_con_maravillas1 = set()
-        paises_con_maravillas2 = set()
-
-        for maravilla in maravillas1:
-            pais = maravilla.pais
-            paises_con_maravillas1.add(pais)
-
-        for maravilla in maravillas2:
-            pais = maravilla.pais
-            paises_con_maravillas2.add(pais)
-
-
     def encontrar_max_episodios_compartidos(self):
         max_episodios = 0
         personajes_max_episodios = []
