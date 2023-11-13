@@ -40,16 +40,16 @@ print('Punto A')
 for heroe in lista_heroes:
     arbol.insert_node(heroe['name'], heroe['heroe'])
 print('heroes')
-arbol.inorden_super_or_villano(True)
+arbol.inorden_heroe_or_villano(True)
 print()
 
 print('villanos')
-arbol.inorden_super_or_villano(False)
+arbol.inorden_heroe_or_villano(False)
 print()
 
 # Punto B
 print('Punto B')
-villanos = arbol.inorden_super_or_villano(False)
+villanos = arbol.inorden_heroe_or_villano(False)
 if villanos is not None:
     print("Listado en orden alfabético de villanos:")
     villanos.inorden()
