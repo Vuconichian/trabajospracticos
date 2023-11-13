@@ -13,14 +13,14 @@ class Arista:
         return f"{self.vertice} {self.peso}"
 
 def criterio_comparacion(value, criterio):
-    if isinstance(value, dict):
-        if criterio in value:
-            return value[criterio]
-        else:
-            print('No se puede ordenar por este criterio')
+    if isinstance(value, (int, str, bool)):
+        return value
     else:
-        print('El valor no es un diccionario. No se puede ordenar por este criterio')
-
+        dic_atributos = value.__dict__
+        if criterio in dic_atributos:
+            return dic_atributos[criterio]
+        else:
+            print('no se puede ordenar por este criterio')
 
 
 class Grafo():
@@ -28,6 +28,52 @@ class Grafo():
     def __init__(self, dirigido=True):
         self.__elements = []
         self.dirigido = dirigido
+    
+    def insert_vertice(self, value, criterio=None):
+            if len(self.__elements) == 0 or criterio_comparacion(value, criterio) >= criterio_comparacion(self.__elements[-1][0], criterio):
+                self.__elements.append([value, ListaArista(), False])
+            elif criterio_comparacion(value, criterio) < criterio_comparacion(self.__elements[0][0], criterio):
+                self.__elements.insert(0, [value, ListaArista(), False])
+            else:
+                index = 1
+                while criterio_comparacion(value, criterio) >= criterio_comparacion(self.__elements[index][0], criterio):
+                    index += 1
+                self.__elements.insert(index, [value, ListaArista(), False])
+
+    def contar_maravillas(self, dato):
+        contador_arquitecturas = 0
+        contador_naturales = 0
+
+        for value in self.__elements:
+            if dato in value[0].pais:
+                if value[0].tipo == 'Arquitectonica':
+                    contador_arquitecturas += 1
+                else:
+                    contador_naturales += 1
+
+        if contador_arquitecturas > 0 or contador_naturales > 0:
+            return f'{dato} tiene: Maravillas Arquitectonicas {contador_arquitecturas} - Maravillas Naturales {contador_naturales}'
+        else:
+            return f'{dato} no se encuentra en el grafo.'
+
+
+    def multiples_maravillas(self, dato):
+        contador_arquitecturas = 0
+        contador_naturales = 0
+
+        for value in self.__elements:
+            if dato in value[0].pais:
+                if value[0].tipo == 'Arquitectonica':
+                    contador_arquitecturas += 1
+                else:
+                    contador_naturales += 1
+
+            if contador_arquitecturas >= 2 or contador_naturales >= 2:
+                return f'{dato} tiene más de una maravilla del mismo tipo.'
+            elif contador_arquitecturas == 1 or contador_naturales == 1:
+                return f'{dato} no tiene más de una maravilla del mismo tipo.'
+            else:
+                return f'{dato} no se encuentra en el grafo.'
 
 
     def paises_con_maravillas(self, maravillas1, maravillas2):
@@ -42,32 +88,6 @@ class Grafo():
             pais = maravilla.pais
             paises_con_maravillas2.add(pais)
 
-        paises_conjuntos = paises_con_maravillas1.intersection(paises_con_maravillas2)
-        return paises_conjuntos
-
-    def paises_con_mas_de_una_maravilla(self, maravillas, tipo):
-        paises_con_mas_de_una = {}
-
-        for maravilla in maravillas:
-            pais = maravilla['pais']
-            if pais in paises_con_mas_de_una:
-                paises_con_mas_de_una[pais] += 1
-            else:
-                paises_con_mas_de_una[pais] = 1
-
-        paises_con_mas_de_una_del_tipo = {pais: count for pais, count in paises_con_mas_de_una.items() if count > 1}
-        return paises_con_mas_de_una_del_tipo
-
-    def insert_vertice(self, value, criterio=None):
-        if len(self.__elements) == 0 or value[criterio] >= self.__elements[-1][0][criterio]:
-            self.__elements.append([value, ListaArista(), False])
-        elif value[criterio] < self.__elements[0][0][criterio]:
-            self.__elements.insert(0, [value, ListaArista(), False])
-        else:
-            index = 1
-            while value[criterio] >= self.__elements[index][0][criterio]:
-                index += 1
-            self.__elements.insert(index, [value, ListaArista(), False])
 
     def encontrar_max_episodios_compartidos(self):
         max_episodios = 0
